@@ -74,7 +74,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.categoryListViewModel.groupViewModels.count 
+        return self.categoryListViewModel.groupViewModels.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -82,16 +82,17 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.categoryListViewModel.groupAtIndex(index: section).categories.count
+        return self.categoryListViewModel.getCategories(ByGroup: self.categoryListViewModel.groupViewModels[section]).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as! CategoryTableViewCell
         let group = self.categoryListViewModel.groupAtIndex(index: indexPath.section)
         let categories = self.categoryListViewModel.getCategories(ByGroup: group)
+        let index = indexPath.row
         
-        cell.categoryName.text = categories[indexPath.row].name
-        cell.categoryIcon.sd_setImage(with: categories[indexPath.row].iconUrl())
+        cell.categoryName.text = categories[index].name
+        cell.categoryIcon.sd_setImage(with: categories[index].iconUrl())
         
         return cell
     }

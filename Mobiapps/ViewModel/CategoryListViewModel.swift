@@ -55,6 +55,7 @@ class CategoryListViewModel {
             self.populateGroups()
         }
     }
+    
     func populateGroups() {
         DataProvider.shared.getAllGroups { (groups) in
             self.groupViewModels = groups.map(GroupViewModel.init)

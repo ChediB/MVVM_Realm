@@ -16,7 +16,7 @@ class Group: Object, Codable {
     @objc dynamic var groupDescription: String = ""
     @objc dynamic var order: Int = 0
     var categoryIdsObjects = List<CategoryId>()
-    var categoriesIds: [Int] = []
+    var categoriesIds: Set<Int> = []
     
     enum CodingKeys: String, CodingKey {
         case id

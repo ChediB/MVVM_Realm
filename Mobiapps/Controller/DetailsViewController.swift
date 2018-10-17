@@ -28,30 +28,18 @@ class DetailsViewController: UIViewController {
         self.initViews()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-        UIView.animate(withDuration: 0.3, animations: {
-            self.descriptionLabel.transform = .identity
-            self.orderLabel.transform = .identity
-            self.caegoryImageView.transform = .identity
-        })
-    }
     //MARK: - Private methods
     
     private func initViews() {
         self.title = self.selectedCategoryViewModel.name
+        
         if self.selectedCategoryViewModel.description.isEmpty {
             self.descriptionLabel.text = "Description: No description"
         } else {
             self.descriptionLabel.text = "Description: \(self.selectedCategoryViewModel.description)"
         }
-        self.descriptionLabel.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
         
-        self.orderLabel.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
         self.orderLabel.text = "Order: \(String(self.selectedCategoryViewModel.order))"
-        
-        self.caegoryImageView.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
         self.caegoryImageView.sd_setImage(with: self.selectedCategoryViewModel.iconUrl())
         
         // Add share button to navigation bar
